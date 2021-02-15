@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<style>
+		#mainBody{
+			margin-top: 50px;
+			display:flex;
+			justify-content: center;
+			flex-direction: row;
+			flex-wrap:wrap;
+		}
+		
+		#assignmentDescript{
+			width: 960px;
+			margin: auto;
+		}
+		
+		#secondRowContainer{
+			display:flex;
+			flex-direction: row;
+			width: 960px;
+		}
+		
+		#colorInput{
+			width: 470px;
+		}
+		
+		#colorBox{
+			width: 470px;
+			height: 200px;
+			background-color: antiquewhite;
+		}
+	</style>
+	
+	<script>
+		function loadFunction(){
+			var randRed = Math.floor(Math.random() * 255) + 1;
+			var randBlue = Math.floor(Math.random() * 255) + 1;
+			var randGreen = Math.floor(Math.random() * 255) + 1;
+			
+			document.getElementById("colorBox").style.backgroundColor = 'rgb(' + randRed + ',' + randBlue + ',' + randGreen + ')';
+		}
+		
+		function nameIt() {
+    		var redVal = document.getElementById("redVal").value;
+			var blueVal = document.getElementById("blueVal").value;
+			var greenVal = document.getElementById("greenVal").value;
+    		
+			if(!(redVal >= 0 && redVal < 256 && redVal % 1 == 0)){
+				alert("Incorrect Value");
+			} else if(!(greenVal >= 0 && greenVal < 256 && greenVal % 1 == 0)){
+				alert("Incorrect Value");
+			} else if(!(blueVal >= 0 && blueVal < 256 && blueVal % 1 == 0)){
+				alert("Incorrect Value");
+			} else {
+				document.getElementById("colorBox").style.backgroundColor = 'rgb(' + redVal + ',' + greenVal + ',' + blueVal + ')';
+			}			
+		}
+	</script>
+</head>
+
+<body onLoad="loadFunction()">
+	<div id="mainBody">
+		<div id="assignmentDescript">
+			<h1>Albert Huang Homework 1</h1>
+			<p>
+				I have 3 text boxes that allow you to enter a value for red, green and blue.  This will change the color on the square on the webpage.  The square also defaults to a random color when the page is first loaded.  I also experimented with some logic so that when a user does not enter an integer from 1 - 255 the input gets rejected. So for example if you put a string or double in the site will alert you saying incorrect value.
+			</p>
+		</div>
+		
+		<div id="secondRowContainer">
+			<div id="colorInput">
+				<label>Red</label><br>
+				<input type="text" id="redVal"><br>
+				<label>Green</label><br>
+				<input type="text" id="greenVal"><br>
+				<label>Blue</label><br>
+				<input type="text" id="blueVal"><br>
+				<input type="submit" value="Test" onClick="return nameIt()">
+			</div>
+			
+			<div id="colorBox">
+			</div>
+		</div>
+		
+	</div>	
+</body>
+</html>
