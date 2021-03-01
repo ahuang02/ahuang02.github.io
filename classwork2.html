@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<script>
+		var myFirstVariable = "valuehere";
+		var myFirstArray = ["apple", "orange", "3"];
+		var mySecondArray = [1,2,3];
+		
+		//alert(myFirstArray);
+		console.log(myFirstArray);
+		
+		//alert(myFirstArray[1]);
+		//alert(myFirstArray[2]);
+		
+		var colors = ["#F53737", "#22F2D0", "#F2D70A"];
+		
+		function moodChange(){
+			buttonVal = document.getElementById("moodButton");
+			
+			if(buttonVal.value == 0) {
+				document.body.style.backgroundColor = colors[0];
+				buttonVal.value = 1;
+			} else {
+				document.body.style.backgroundColor = colors[1];
+				buttonVal.value = 0;
+			}
+		}
+	</script>
+</head>
+
+<body>
+</body>
+</html>

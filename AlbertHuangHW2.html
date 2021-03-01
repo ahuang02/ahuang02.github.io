@@ -1,0 +1,125 @@
+<!doctype html>
+
+<html>
+<head>
+<style>
+	body {
+		background-color: #FFF278;
+
+	}
+	#moodStatement{
+		font-size: 72px;
+	}
+</style>
+
+</head>
+
+<body>
+
+	<h1>Albert Mood Ring</h1>
+
+	<button id="moodButton" onclick="changeMood()" value="0">Change my mood</button>
+
+	<div id="moodStatement">Sunshiny feeling</div>
+	
+	<br>
+	<h3>Pick a mood</h3>
+	<button class="moodButton2" onclick="changeMood2()" value="0">Angry</button>
+	<button class="moodButton2" onclick="changeMood2()" value="1">Happy</button>
+	<button class="moodButton2" onclick="changeMood2()" value="2">Sad</button>
+	<button class="moodButton2" onclick="changeMood2()" value="3">Bored</button>
+	
+	<br>
+	<h3>Random mood</h3>
+	<button id="randomMood" onclick="changeMood3()">Random Mood</button>
+	
+	<script>
+		text =""
+		function changeMood(){
+			button = document.getElementById("moodButton");
+			if (button.value == '0') {
+				text ="Rainy Day Feeling";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = "#5465FF";
+				button.value = '1';
+			}
+			else {
+				text = "Sunshiny feeling";
+				document.getElementById('moodStatement').innerHTML = text;
+						document.body.style.backgroundColor = "#FFF278";
+				button.value = '0';
+			}
+		}
+		
+		function changeMood2(){
+			var button2 = document.getElementsByClassName("moodButton2");
+			for(var i = 0; i < button2.length; i++){
+				button2[i].addEventListener('click', function(){
+				if(this.value == 0){
+					text = "you are angry";
+					document.getElementById('moodStatement').innerHTML = text;
+					document.body.style.backgroundColor = "#eb4034";
+					button2[i].value = 8;
+				} else if(this.value == 1){
+					text = "you are happy";
+					document.getElementById('moodStatement').innerHTML = text;
+					document.body.style.backgroundColor = "#fff86b";
+					button2[i].value = 8;
+				} else if(this.value == 2){
+					text = "you are sad";
+					document.getElementById('moodStatement').innerHTML = text;
+					document.body.style.backgroundColor = "#38a2ba";
+					button2[i].value = 8;
+				} else {
+					text = "you are bored";
+					document.getElementById('moodStatement').innerHTML = text;
+					document.body.style.backgroundColor = "#6b6b6b";
+					button2[i].value = 8;
+				}										
+			});
+			}
+		}
+		
+		function changeMood3(){
+			var hue = Math.floor(Math.random() * 360) + 1;
+			var sat = Math.floor(Math .random() * 50) + 50;
+			var val = Math.floor(Math.random() * 30) + 70;
+			
+			if(hue <= 30) {
+				text = "you are angry";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = 'hsl(' + hue + ',' + sat + '%,' + val + '%)';	
+			} else if(hue >= 30 && hue <= 60){
+				text = "you are feeling hot";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = 'hsl(' + hue + ',' + sat + '%,' + val + '%)';
+			} else if(hue >= 60 && hue <= 90){
+				text = "you are happy";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = 'hsl(' + hue + ',' + sat + '%,' + val + '%)';
+			} else if(hue >= 90 && hue <= 120){
+				text = "you are feeling sick";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = 'hsl(' + hue + ',' + sat + '%,' + val + '%)';
+			} else if(hue >= 120 && hue <= 150){
+				text = "you are getting a bit cold";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = 'hsl(' + hue + ',' + sat + '%,' + val + '%)';
+			} else if(hue >= 150 && hue <= 180){
+				text = "you are really cold";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = 'hsl(' + hue + ',' + sat + '%,' + val + '%)';
+			} else if(hue >= 180 && hue <= 240){
+				text = "you are very sad";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = 'hsl(' + hue + ',' + sat + '%,' + val + '%)';
+			} else {
+				text = "you are calm";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = 'hsl(' + hue + ',' + sat + '%,' + val + '%)';
+			}
+		}
+		
+	</script>
+</body>
+</html>
