@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<style>
+		#mainBody{
+			margin-top: 50px;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: row;
+			flex-wrap: wrap;
+			width:960px;
+		}
+		
+		#question1{
+			background-color: rgba(209,209,209,1.00);
+			width:960px;
+			margin:auto;
+		}
+		
+		#question1 img{
+			width:800px;
+			
+		}
+	</style>
+	
+	<script>
+		var score = 0;
+		var value1, value2, value3, value4;
+		var value5, value6, value7, value8;
+		var value9, value10, value11, value12;
+		var value13, value14, value15, value16;
+		
+		function loadFunction(){
+			value1 = 0;
+			value2 = 1;
+			value3 = 2;
+			value4 = 3;
+		}
+		
+		function nextQuestion(){
+			var button2 = document.getElementsByClassName("answerButton");
+				for(var i = 0; i < button2.length; i++){
+					button2[i].addEventListener('click', function(){
+						
+						/*logic for first question*/
+						if(this.value == 0){
+							score+=1;
+						}
+						
+						/*
+						if(value9 == 8 || value10 == 9 || value11 == 10 
+						  || value12 == 11){
+							document.getElementById('bikeImg').src = 'https://cdn.shopify.com/s/files/1/0008/9738/4508/products/veniceblue_2000x2000.png?v=1600961656';
+							document.getElementById('questionCounter').innerHTML = "Question 4 of 5";
+								for(var i = 0; i < button2.length; i++){
+									if(button2[i].value == 8){
+										button2[i].value = 12;
+										button2[i].innerHTML = "Pinarello Prince FX";
+										value9 = 99;
+										value13 = 12;
+									} else if(button2[i].value == 9){
+										button2[i].value = 13;
+										button2[i].innerHTML = "Pinarello Grevil";
+										value10 = 99;
+										value14 = 13;
+									} else if(button2[i].value == 10){
+										button2[i].value = 14;
+										button2[i].innerHTML = "Pinarello Bolide";
+										value11 = 99;
+										value15 = 14;
+									} else if(button2[i].value == 11){
+										button2[i].value = 15;
+										button2[i].innerHTML = "Pinarello F12";
+										value12 = 99;
+										value16 = 15;
+										return;
+									}
+								}
+						}
+						*/
+						
+						if(value5 == 4 || value6 == 5 || value7 == 6 
+						  || value8 == 7){
+							document.getElementById('bikeImg').src = 'https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/2/2020/01/hhehf96F-e1577894052591.jpeg';
+							document.getElementById('questionCounter').innerHTML = "Question 3 of 5";
+								for(var i = 0; i < button2.length; i++){
+									if(button2[i].value == 4){
+										button2[i].value = 8;
+										button2[i].innerHTML = "Look 795 Blade RS";
+										value5 = 99;
+										value9 = 8;
+									} else if(button2[i].value == 5){
+										button2[i].value = 9;
+										button2[i].innerHTML = "Look T20";
+										value6 = 99;
+										value10 = 9;
+									} else if(button2[i].value == 6){
+										button2[i].value = 10;
+										button2[i].innerHTML = "Look 785 Huez";
+										value7 = 99;
+										value11 = 10;
+									} else if(button2[i].value == 7){	
+										button2[i].value = 11;
+										button2[i].innerHTML = "Look Monoblade";
+										value8 = 99;
+										value12 = 11;
+										return;
+									}
+								}
+						}
+						
+						
+						if(value1 == 0 || value2 == 1 || value3 == 2 
+						  || value4 == 3){
+							document.getElementById('bikeImg').src = 'https://i.redd.it/ui7rvs4b6jq01.jpg';
+							document.getElementById('questionCounter').innerHTML = "Question 2 of 5";
+								for(var i = 0; i < button2.length; i++){
+									if(button2[i].value == 0){
+										button2[i].value = 4;
+										button2[i].innerHTML = "Cervelo S5";
+										value5 = 4;
+										value1 = 99;
+									} else if(button2[i].value == 1){
+										button2[i].value = 5;
+										button2[i].innerHTML = "Cervelo R5";
+										value6 = 5;
+										value2 = 99;
+									} else if(button2[i].value == 2){
+										button2[i].value = 6;
+										button2[i].innerHTML = "Cervelo P5X";
+										value7 = 6;
+										value3 = 99;
+									} else if(button2[i].value == 3){
+										button2[i].value = 7;
+										button2[i].innerHTML = "Cervelo Caledonia";
+										value8 = 7;
+										value4 = 99;
+										return;
+									}
+								}
+						}
+						
+						//second question
+						if(this.value == 6){
+							score+=1;
+						}
+							
+						
+						//third question
+						if(this.value == 9){
+							score+=1;
+						}
+						
+						/*
+						
+						//fourth question
+						if(this.value == 11){
+							score+=1;
+						}
+						
+						if(this.value == 12 || this.value == 13 || this.value == 14 
+						  || this.value == 15){
+							document.getElementById('bikeImg').src = 'https://www.bianchi.com/wp-content/uploads/2020/12/specialisisma-greenedge.jpg';
+							document.getElementById('questionCounter').innerHTML = "Question 5 of 5";
+								for(var i = 0; i < button2.length; i++){
+									if(button2[i].value == 12){
+										button2[i].value = 16;
+										button2[i].innerHTML = "Bianchi Oltre XR4";
+									} else if(button2[i].value == 13){
+										button2[i].value = 17;
+										button2[i].innerHTML = "Bianchi Aquila CV";
+									} else if(button2[i].value == 14){
+										button2[i].value = 18;
+										button2[i].innerHTML = "Bianchi Specialisisma";
+									} else if(button2[i].value == 15){
+										button2[i].value = 19;
+										button2[i].innerHTML = "Binachi Aria";
+										return;
+									}
+								}
+						}
+						
+						if(this.value == 18){
+							score+=1;
+						}
+						
+						if(this.value == 16 || this.value == 17 || this.value == 18 
+						  || this.value == 19){
+							document.getElementById('question1').innerHTML = 'Your score is ' + score + '!';
+						}
+						*/
+						
+					});
+				}//end of for
+			
+		}
+		
+	</script>
+</head>
+
+<body onLoad="loadFunction()">
+	<div id="mainBody">
+		<h1>Albert Huang Homework 2</h1>
+		
+		<div id="question1">
+			<img src="https://s14761.pcdn.co/wp-content/uploads/sites/3/2018/11/GF_010-Aero-Race-Bike-Test-Review-Trek-Madone-SLR-9-Disc-38.jpg" id="bikeImg" alt="trek">
+			<h4 id="questionCounter">Question 1 of 5</h4>
+			<h1>What is the name of this bike?</h1>
+			<button class="answerButton" onclick="nextQuestion()" value="0">Trek Madone</button>
+			<button class="answerButton" onclick="nextQuestion()" value="1">Trek Domane</button>
+			<button class="answerButton" onclick="nextQuestion()" value="2">Trek Emonda</button>
+			<button class="answerButton" onclick="nextQuestion()" value="3">Trek Session</button>
+		</div>
+		
+		
+	</div>
+	
+</body>
+</html>

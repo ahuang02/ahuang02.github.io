@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<style>
+		#mainBody{
+			margin-top: 50px;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: row;
+			flex-wrap: wrap;
+			width:960px;
+		}
+		
+		.question1{
+			background-color: rgba(209,209,209,1.00);
+			width:960px;
+			margin:auto;
+			margin-top: 50px;
+		}
+		
+		#question1 img{
+			width:800px;
+			
+		}
+		
+		.bikeImg{
+			width: 800px;
+		}
+		
+		button {
+			background-color: #638796;
+		 	border: none;
+		  	color: white;
+		  	padding: 15px 32px;
+		  	text-align: center;
+		  	text-decoration: none;
+		  	display: inline-block;
+		  	font-size: 16px;
+		  	margin: 4px 2px;
+		  	cursor: pointer;
+		}
+		
+		.button {
+			background-color: #69f08d;
+		}
+	</style>
+	
+	<script>
+		var score = 0;
+		
+		function nextQuestion(param1){
+			button = document.getElementById(param1);
+			if(button.value == 0 || button.value == 6 || button.value == 9 || button.value == 15 || button.value == 18){
+				score+=1;
+				button.style.backgroundColor = "#69f08d";
+			} else {
+				button.style.backgroundColor = "#69f08d";
+			}
+		}
+		
+		function getScore(){
+			document.getElementById("scoreText").innerHTML = "You score is " + score + " out of 5!";
+		}
+		
+	</script>
+</head>
+
+<body>
+	<div id="mainBody">
+		<h1>Albert Huang Homework 2</h1>
+		<br>
+		<h1>What are the name of these bikes?</h1>
+		
+		<div class="question1">
+			<img src="https://s14761.pcdn.co/wp-content/uploads/sites/3/2018/11/GF_010-Aero-Race-Bike-Test-Review-Trek-Madone-SLR-9-Disc-38.jpg" class="bikeImg" alt="trek">
+			<h4>Question 1 of 5</h4>
+			<button id="answerButton1" class ="" onclick="nextQuestion('answerButton1')" value="0">Trek Madone</button>
+			<button id="answerButton2" onclick="nextQuestion('answerButton2')" value="1">Trek Domane</button>
+			<button id="answerButton3" onclick="nextQuestion('answerButton3')" value="2">Trek Emonda</button>
+			<button id="answerButton4" onclick="nextQuestion('answerButton4')" value="3">Trek Session</button>
+		</div>
+		
+		<div class="question1">
+			<img src="https://i.redd.it/ui7rvs4b6jq01.jpg" class="bikeImg" alt="trek">
+			<h4>Question 2 of 5</h4>
+			<button id="answerButton5" onclick="nextQuestion('answerButton5')" value="4">Cervelo S5</button>
+			<button id="answerButton6" onclick="nextQuestion('answerButton6')" value="5">Cervelo R5</button>
+			<button id="answerButton7" onclick="nextQuestion('answerButton7')" value="6">Cervelo P5X</button>
+			<button id="answerButton8" onclick="nextQuestion('answerButton8')" value="7">Cervelo Caledonia</button>
+		</div>
+		
+		<div class="question1">
+			<img src="https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/2/2020/01/hhehf96F-e1577894052591.jpeg" class="bikeImg" alt="trek">
+			<h4>Question 3 of 5</h4>
+			<button id="answerButton9" onclick="nextQuestion('answerButton9')" value="8">Look 795 Blade RS</button>
+			<button id="answerButton10" onclick="nextQuestion('answerButton10')" value="9">Look T20</button>
+			<button id="answerButton11" onclick="nextQuestion('answerButton11')" value="10">Look 785 Huez</button>
+			<button id="answerButton12" onclick="nextQuestion('answerButton12')" value="11">Look Monoblade</button>
+		</div>
+		
+		<div class="question1">
+			<img src="https://cdn.shopify.com/s/files/1/0008/9738/4508/products/veniceblue_2000x2000.png?v=1600961656" class="bikeImg" alt="trek">
+			<h4>Question 4 of 5</h4>
+			<button id="answerButton13" onclick="nextQuestion('answerButton13')" value="12">Pinarello Prince FX</button>
+			<button id="answerButton14" onclick="nextQuestion('answerButton14')" value="13">Pinarello Grevil</button>
+			<button id="answerButton15" onclick="nextQuestion('answerButton15')" value="14">Pinarello Bolide</button>
+			<button id="answerButton16" onclick="nextQuestion('answerButton16')" value="15">Pinarello F12</button>
+		</div>
+		
+		<div class="question1">
+			<img src="https://www.bianchi.com/wp-content/uploads/2020/12/specialisisma-greenedge.jpg" class="bikeImg" alt="trek">
+			<h4>Question 5 of 5</h4>
+			<button id="answerButton17" onclick="nextQuestion('answerButton17')" value="16">Bianchi Oltre XR4</button>
+			<button id="answerButton18" onclick="nextQuestion('answerButton18')" value="17">Bianchi Aquila CV</button>
+			<button id="answerButton19" onclick="nextQuestion('answerButton19')" value="18">Bianchi Specialisisma</button>
+			<button id="answerButton20" onclick="nextQuestion('answerButton20')" value="19">Binachi Aria</button>
+		</div>
+		
+		<div class ="question1">
+			<button id="scoreButton" onclick="getScore()">Get my score</button>
+			<h4 id="scoreText"></h4>
+		</div>
+		
+	</div>
+	
+</body>
+</html>

@@ -33,8 +33,31 @@
 	<h3>Random mood</h3>
 	<button id="randomMood" onclick="changeMood3()">Random Mood</button>
 	
+	<br><br>
+	<button class="moodButton3" onclick="changeMood4(1)">angry</button>
+	<button class="moodButton3" onclick="changeMood4(2)">sad</button>
+	<button class="moodButton3" onclick="changeMood4(3)">bored</button>
+	
 	<script>
 		text =""
+		
+		function changeMood4(param1){
+			//alert("in");
+			if(param1 == 1){
+				text = "you are angry";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = "#eb4034";
+			} else if(param1 == 2) {
+				text = "you are sad";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = "#38a2ba";
+			} else {
+				text = "you are bored";
+				document.getElementById('moodStatement').innerHTML = text;
+				document.body.style.backgroundColor = "#6b6b6b";
+			}	
+		}
+		
 		function changeMood(){
 			button = document.getElementById("moodButton");
 			if (button.value == '0') {
@@ -53,30 +76,30 @@
 		
 		function changeMood2(){
 			var button2 = document.getElementsByClassName("moodButton2");
-			for(var i = 0; i < button2.length; i++){
-				button2[i].addEventListener('click', function(){
-				if(this.value == 0){
-					text = "you are angry";
-					document.getElementById('moodStatement').innerHTML = text;
-					document.body.style.backgroundColor = "#eb4034";
-					button2[i].value = 8;
-				} else if(this.value == 1){
-					text = "you are happy";
-					document.getElementById('moodStatement').innerHTML = text;
-					document.body.style.backgroundColor = "#fff86b";
-					button2[i].value = 8;
-				} else if(this.value == 2){
-					text = "you are sad";
-					document.getElementById('moodStatement').innerHTML = text;
-					document.body.style.backgroundColor = "#38a2ba";
-					button2[i].value = 8;
-				} else {
-					text = "you are bored";
-					document.getElementById('moodStatement').innerHTML = text;
-					document.body.style.backgroundColor = "#6b6b6b";
-					button2[i].value = 8;
-				}										
-			});
+				for(var i = 0; i < button2.length; i++){
+					button2[i].addEventListener('click', function(){
+					if(this.value == 0){
+						text = "you are angry";
+						document.getElementById('moodStatement').innerHTML = text;
+						document.body.style.backgroundColor = "#eb4034";
+						button2[i].value = 8;
+					} else if(this.value == 1){
+						text = "you are happy";
+						document.getElementById('moodStatement').innerHTML = text;
+						document.body.style.backgroundColor = "#fff86b";
+						button2[i].value = 8;
+					} else if(this.value == 2){
+						text = "you are sad";
+						document.getElementById('moodStatement').innerHTML = text;
+						document.body.style.backgroundColor = "#38a2ba";
+						button2[i].value = 8;
+					} else {
+						text = "you are bored";
+						document.getElementById('moodStatement').innerHTML = text;
+						document.body.style.backgroundColor = "#6b6b6b";
+						button2[i].value = 8;
+					}										
+				});
 			}
 		}
 		
