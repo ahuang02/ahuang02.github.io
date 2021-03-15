@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<style>
+	</style>
+	
+	<script>
+		function Student(fName, lName, year, gender, idNum, major) {
+			this.fName = fName;
+			this.lName = lName;
+			this.year = year;
+			this.gender = gender;
+			this.idNum = idNum;
+			this.major = major;
+			this.info = function(){
+				return this.fName + this.lName + " Year: " + this.year +
+					" Gender: " + this.gender + " ID Number: " + this.idNum
+					+ " Major: " + this.major;
+			}
+		}
+		
+		var student1 = new Student("Tom", "Smith", 3, "M", 123456, "Computer Science");
+		var student2 = new Student("Jane", "Smith", 1, "F", 455134, "Chemistry");
+		var student3 = new Student("Max", "Thompson", 2, "M", 413415, "Biology");
+		
+		function getAllStudents(){
+			console.log(student1.info());
+			console.log(student2.info());
+			console.log(student3.info());
+		}
+		
+	</script>
+	
+</head>
+
+<body>
+	<div id="mainBody">
+		<button onclick = "getAllStudents()">Get all the students</button><br>
+		<p>This button will list all the students to the console log</p>
+	</div>
+	
+</body>
+</html>
