@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Albert's Game</title>
+	<style>
+		canvas {
+			display: block;
+			margin 0, auto, 0, 0;
+			background-image: url(gamefiles/map.png);
+			background-size: cover;                      
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="gameCanv" width="960" height="960">
+		<script>
+			var canvas = document.getElementById("gameCanv");
+			var ctx = canvas.getContext("2d");
+			var monID = 0;
+			var level1 = true;
+			var level2 = false;
+			var level3 = false;
+			var timer = 0;
+			var timerCounter = 0;
+			var monsterRandom = 0;
+			var monsterX = 0;
+			var monsterY = 0;
+			var heroRandomCol = 0;
+			var gameOver = false;
+			//hero images
+			//red hero
+			var rHeroRdy = false;
+			var rHeroImage = new Image();
+			rHeroImage.onload = function(){
+				rHeroRdy = true;
+			}
+			rHeroImage.src = "gamefiles/rWar.png";
+			
+			//blue hero
+			var bHeroRdy = false;
+			var bHeroImage = new Image();
+			bHeroImage.onload = function(){
+				bHeroRdy = true;
+			}
+			bHeroImage.src = "gamefiles/bWar.png";
+			
+			//green hero
+			var gHeroRdy = false;
+			var gHeroImage = new Image();
+			gHeroImage.onload = function(){
+				gHeroRdy = true;
+			}
+			gHeroImage.src = "gamefiles/gWar.png";
+			
+			//monster images
+			//red monster
+			var rMonRdy = false;
+			var rMonImage = new Image();
+			rMonImage.onload = function(){
+				rMonRdy = true;
+			}
+			rMonImage.src = "gamefiles/rMon.png";
+			
+			//blue monster
+			var bMonRdy = false;
+			var bMonImage = new Image();
+			bMonImage.onload = function(){
+				bMonRdy = true;
+			}
+			bMonImage.src = "gamefiles/bMon.png";
+			
+			//green monster
+			var gMonRdy = false;
+			var gMonImage = new Image();
+			gMonImage.onload = function(){
+				gMonRdy = true;
+			}
+			gMonImage.src = "gamefiles/gMon.png";
+			
+			//game objects
+			var hero = {
+				//movement speed
+				speed:250, color:"red"
+			};
+			
+			function Monster(color, x, y){
+				this.color = color;
+				this.x = x;
+				this.y = y;	
+			} 
+			
+			var monsters = new Array();
+			
+			//score var
+			var score = 0;
+			
+			//keyboard controls
+			var keysDown = {};
+			addEventListener("keydown", function (key) {
+			  keysDown[key.keyCode] = true;
+			}, false);
+			addEventListener("keyup", function (key) {
+			  delete keysDown[key.keyCode];
+			}, false);
+			
+			//hero and monster update function
+			//also collision checker
+			var drawUpdate = function (spdModifier){
+				/*
+				if(38 in keysDown) {
+					//up key
+					hero.y -= hero.speed * spdModifier;
+				} else if(40 in keysDown) {
+					//down key
+					hero.y += hero.speed * spdModifier;
+				} else if(37 in keysDown) {
+					//left key
+					hero.x -= hero.speed * spdModifier;
+				} else if(39 in keysDown) {
+					//right key
+					hero.x += hero.speed * spdModifier;
+				}
+				*/
+				if(38 in keysDown) {
+					//up key
+					hero.y -= hero.speed * spdModifier;
+				} 
+				if(40 in keysDown) {
+					//down key
+					hero.y += hero.speed * spdModifier;
+				} 
+				if(37 in keysDown) {
+					//left key
+					hero.x -= hero.speed * spdModifier;
+				} 
+				if(39 in keysDown) {
+					//right key
+					hero.x += hero.speed * spdModifier;
+				}
+				if(90 in keysDown){
+					//z key
+					hero.color = "red";			
+				}
+				if(88 in keysDown){
+					//x key
+					hero.color = "green";
+				}
+				if(67 in keysDown){
+					//c key
+					hero.color = "blue";
+				}
+			}
+			
+			hero.x = canvas.width/2;
+			hero.y = canvas.height/2;	
+			
+			function moveMonster(moveAmount, monIndex){
+				var xDist = hero.x - monsters[monIndex].x;
+				var yDist = hero.y - monsters[monIndex].y;
+				var distance = Math.sqrt(xDist * xDist + yDist * yDist);
+				if(distance > 1){
+					monsters[monIndex].x += xDist * moveAmount;
+					monsters[monIndex].y += yDist * moveAmount;
+				}
+			}
+			
+			function drawMonsters(value, index, array){
+				if(monsters[index].color == "red"){
+					ctx.drawImage(rMonImage, monsters[index].x , monsters[index].y);
+				} else if(monsters[index].color == "green"){
+					ctx.drawImage(gMonImage, monsters[index].x, monsters[index].y);
+				} else if(monsters[index].color == "blue"){
+					ctx.drawImage(bMonImage, monsters[index].x, monsters[index].y)
+				}
+				
+				moveMonster(.0002, index);
+			
+				//collision check
+				if(hero.x <= (monsters[index].x + 75) && 
+				   monsters[index].x <= (hero.x + 75) &&
+				   hero.y <= (monsters[index].y + 84) &&
+				   monsters[index].y <= (hero.y + 90) &&
+				   hero.color == monsters[index].color){
+				   		score+=1;
+						//removes the monster
+						monsters.splice(index, 1);
+						heroRandomCol = Math.floor(Math.random() * 3);
+						if(heroRandomCol == 0){
+							hero.color = "red";
+						} else if(heroRandomCol == 1){
+							hero.color = "green";
+						} else if(heroRandomCol == 2){
+							hero.color = "blue";
+						}
+						
+				 }
+				
+				//lose check
+				if(hero.x <= (monsters[index].x + 75) && 
+				   monsters[index].x <= (hero.x + 75) &&
+				   hero.y <= (monsters[index].y + 84) &&
+				   monsters[index].y <= (hero.y + 90) &&
+				   hero.color != monsters[index].color){
+				   		rHeroRdy = false;
+						bHeroRdy = false;
+						gHeroRdy = false;
+						rMonRdy = false;
+						bMonRdy = false;
+						gMonRdy = false;
+						
+						gameOver = true;
+				}
+			}
+			
+			function generateMonsters(){
+				//generate random number for monster color
+				monsterRandom = Math.floor(Math.random() * 3);
+				monsterX = Math.floor(Math.random() * 960);
+				monsterY = Math.floor(Math.random() * 960);
+				if(monsterRandom == 0){
+					monsters.push(new Monster("red", monsterX, monsterY));	
+				} else if(monsterRandom == 1) {
+					monsters.push(new Monster("green", monsterX, monsterY));
+				} else if(monsterRandom == 2) {
+					monsters.push(new Monster("blue", monsterX, monsterY));
+				}
+			}
+			
+			function draw() {
+				//console.log(hero.color);
+				//clear canvas and redraw
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				
+				//hero color change system
+				if(rHeroRdy || bHeroRdy || gHeroRdy){
+					if(hero.color == "red"){
+						ctx.drawImage(rHeroImage, hero.x, hero.y);
+					} else if(hero.color == "green") {
+						ctx.drawImage(gHeroImage, hero.x, hero.y);
+					} else if(hero.color == "blue") {
+						ctx.drawImage(bHeroImage, hero.x, hero.y);
+					}
+				}
+						
+				if(level1){
+					//monster generation rate
+					if(timer % 300 <= 0){
+						generateMonsters();
+						timer = 0;
+						timerCounter++;
+					}
+					
+					if(timerCounter == 10){
+						timerCounter = 0;
+						level1 = false;
+						level2 = true;
+						level3 = false;
+					}
+				}
+				
+				if(level2){
+					//monster generation rate
+					if(timer % 200 <= 0){
+						generateMonsters();
+						timer = 0;
+						timerCounter++;
+					}
+					
+					if(timerCounter == 10){
+						timerCounter = 0;
+						level1 = false;
+						level2 = false;
+						level3 = true;
+					}
+				}
+				
+				if(level3){
+					//monster generation rate
+					if(timer % 100 <= 0){
+						generateMonsters();
+						timer = 0;
+					}
+				}
+				
+				//draw all the monsters
+				if(rMonRdy || bMonRdy || gMonRdy){
+					monsters.forEach(drawMonsters);
+				}
+				
+				
+				//score display
+				if(!gameOver){
+					ctx.fillStyle = "rgb(0,0,0)";
+					ctx.font = "24px Arial";
+					ctx.textAlign = "left";
+					ctx.fillText("Score: " + score, canvas.width/2 - 35, canvas.height - 50);
+				}
+				
+				if(gameOver){
+					ctx.fillStyle = "rgb(252,33,18)";
+					ctx.font = "100px Arial";
+					ctx.textAlign = "center";
+					ctx.fillText("Game Over", canvas.width/2, canvas.height/2);
+					
+					ctx.fillStyle = "rgb(0,0,0)";
+					ctx.font = "48px Arial";
+					ctx.textAlign = "left";
+					ctx.fillText("Score: " + score, canvas.width/2 - 75, canvas.height - 400);
+				}
+				drawUpdate(.02);
+				timer++;
+			}
+			setInterval(draw, 10);
+		</script>
+	</canvas>
+</body>
+</html>
