@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
+<style>
+	#bikeImg{
+		width:800px;
+		height:auto;
+	}	
+</style>	
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script>	
+		$('.select').selectmenu();
+		$('#brandList').selectmenu();
+		
+		$(document).ready(function(){						
+			$('#brandList').on('change',function(){
+				//var brandValue = $(this).val();
+				//var brandText = $('#brandList option[value="'+optionValue+'"]').text();
+				var brandText = $("#brandList option:selected").text();
+				var modelText = $("#model option:selected").text();
+				console.log("Selected Option Text: "+brandText);
+				
+				if(brandText == "Trek") {
+					$('#model').html('<option disabled selected>Select Model</option><option value = "1">Madone</option><option value="2">Emonda</option><option value="3">Domane</option>');
+				} else if(brandText == "Look"){
+					$('#model').html('<option disabled selected>Select Model</option><option value = "1">795 Blade RS</option><option value="2">785 Huez RS</option><option value="3">765 Optimum</option>');
+				} else if(brandText == "Pinarello") {
+					$('#model').html('<option disabled selected>Select Model</option><option value = "1">Dogma F12</option><option value="2">Prince</option><option value="3">Grevil</option>');
+				} else if(brandText == "Cervelo"){
+					$('#model').html('<option disabled selected>Select Model</option><option value = "1">R5</option><option value="2">S5</option><option value="3">Caledonia</option>');	 
+				}
+			});
+			
+			$('#model').on('change', function(){
+				var modelName = $("#model option:selected").text();
+				console.log("Selected model name: " + modelName);
+				
+				if(modelName == "Domane"){
+					$('#bikeImg').attr("src","https://trek.scene7.com/is/image/TrekBicycleProducts/TK20_WEB_BikeFamPgRedesign_Domane_3CB_1?$responsive-pjpg$&cache=on,on&wid=1920&hei=1440&fit=fit,1");
+				} else if(modelName == "Madone"){
+					$('#bikeImg').attr("src","https://trek.scene7.com/is/image/TrekBicycleProducts/MadoneSL7DisceTap_21_33065_A_Primary?$responsive-pjpg$&cache=on,on&wid=1920&hei=1440");
+				} else if(modelName == "Emonda") {
+					$('#bikeImg').attr("src","https://trek.scene7.com/is/image/TrekBicycleProducts/EmondaSL6Disc_21_32561_A_Primary?$responsive-pjpg$&cache=on,on&wid=1920&hei=1440");
+				} else if(modelName == "795 Blade RS"){
+					$('#bikeImg').attr("src","https://www.lookcycle.com/media/cache/product_large_thumbnail/products-bikes-2020/cover_white_background/bike-product-page_cover-white-background_2112x1276_795-blade-rs-disc_ultegra-di2_metallic-blue-glossy_2020_A1.jpg");
+				} else if(modelName == "785 Huez RS"){
+					$('#bikeImg').attr("src","https://www.lookcycle.com/media/cache/product_large_thumbnail/products-bikes-2020/cover_white_background/bike-product-page_cover-white-background_2112x1276_785-huez-rs-disc_force-etap_proteam-white-glossy_2020_A1.jpg");
+				} else if(modelName == "765 Optimum") {
+					$('#bikeImg').attr("src","https://www.lookcycle.com/media/cache/product_large_thumbnail/products-bikes-2020/cover_white_background/bike-product-page_cover-white-background_2112x1276_765-optimum-disc_shimano-105_black-glossy_2020_A1.jpg");
+				} else if(modelName == "Dogma F12") {
+					$('#bikeImg').attr("src","https://cdn11.bigcommerce.com/s-ox79uhj/images/stencil/1280x1280/products/41464/109637/pinarello_dogma_f12_sideral_grey__14165.1580823838.JPG?c=2");
+				} else if(modelName == "Prince") {
+					$('#bikeImg').attr("src","https://www.bikeride.com/images/bike/prince-1.jpg");
+				} else if(modelName == "Grevil") {
+					$('#bikeImg').attr("src","https://www.bikeride.com/images/bike/Grevil-manuf.-site.jpeg");
+				} else if(modelName == "R5") {
+					$('#bikeImg').attr("src","https://www.cervelo.com/media/gene-cms/r/5/r5-dura-ace-di2-green-gold-white-profile_1_mobile_1.jpg");
+				} else if(modelName == "S5") {
+					$('#bikeImg').attr("src","https://www.cervelo.com/media/gene-cms/s/5/s5-disc-dura-ace-di2-carbon-metallic-profile-mobile.jpg");
+				} else if(modelName == "Caledonia") {
+					$('#bikeImg').attr("src","https://content.backcountry.com/images/items/900/CVL/CVL1WVA/BLAWHI.jpg");
+				}
+			});
+		});
+
+		
+		/*
+		$(".select2").selectmenu({
+			change: function (event, data) {
+
+				var firstVal = $('#one').find(':selected').text();
+				alert(firstVal);
+				console.log("hi");
+				return false;
+
+			}
+		});*/	
+	</script>
+</head>
+
+<body>
+	<form action="#">
+ 
+  		<fieldset>
+			<select id="brandList">
+				<option disabled selected>Select Brand</option>
+				<option value="1">Trek</option>
+				<option value="2">Look</option>
+				<option value="3">Pinarello</option>
+				<option value="4">Cervelo</option>
+			</select>
+
+			<select class="select" id="model">
+			<option value="1">Choose Bike Brand</option>
+			</select>
+		</fieldset>
+	</form>
+	
+	<div class="pictureField">
+		<img id="bikeImg" src="http://probablyprogramming.com/wp-content/uploads/2009/03/tinytrans.gif" alt="bike">
+	</div>
+	
+</body>
+</html>
