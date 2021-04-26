@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<style>
+		#mainContent{
+			display:flex;
+			align-items: center;
+			justify-content:center;
+		}
+		
+		#jokeContainer{
+			margin-top:150px;
+			width:960px;
+			
+		}
+	</style>
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script>
+		var joke;
+		
+		$(document).ready(function(){
+			$('.jokeContainer').html("<p>" + joke + "</p>");
+			console.log("joke var " + joke);
+		});
+	
+		$.ajax({
+			url: 'https://geek-jokes.sameerkumar.website/api?format=json',
+			dataType: 'json',
+			type: 'get',
+			cache: false,
+			success: function(data){
+				//$(data).each(function(index,value){
+					console.log(data);
+					var joke2 = JSON.stringify(data);
+					$('#jokeContainer').html("<h1>" + data.joke + "</h1>");
+				//});
+			}
+		});
+	</script>
+	
+	<div id="mainContent">
+		<div id="jokeContainer">
+
+		</div>
+	</div>
+	
+</body>
+</html>
