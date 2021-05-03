@@ -1,0 +1,131 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>Albert Skills Assignment 3</title>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
+	<style>
+		#eventBoxContainer {
+			margin-bottom: 15px;
+			padding: 10px;
+		}
+		
+		.eventBoxes{
+			margin-bottom: 15px;
+			background-color:aquamarine;
+		}
+		
+		.eventBoxExtraDet {
+			display:none;
+		}
+		
+		.hideExtraDet {
+			display:none;
+		}
+	</style>
+	
+	
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+	<script>
+		var events = new Array();
+		var selectedOption;
+		var selectCounter = 0;
+		
+		function Event(artist, venue, date, city, state, showTime, price, currency) {
+			this.artist = artist;
+			this.venue = venue;
+			this.date = date;
+			this.city = city;
+			this.state = state;
+			this.showTime = showTime;
+			this.price = price;
+			this.currency = currency;
+		}
+		
+		$('#venueList').selectmenu();
+		$('#eventBoxContainer').accordion();
+	
+		$(document).ready(function(){
+			$('#venueList').on('change', function(){
+				selectedOption = $("#venueList option:selected").text();
+				//console.log(selectedOption);
+				selectCounter = 0;
+				$.each(events, function(index, value){
+					if(value.venue == selectedOption && selectCounter == 0){
+						$('#eventBoxContainer').html("<h3>" + value.artist + " " + value.date + "</h3>" + "<div>" + value.city + "<br>" + value.state + "<br>" + value.showTime + "<br>" + value.price + "<br>" + value.currency + "<br></div>");
+						selectCounter++;
+					} else if(value.venue == selectedOption && selectCounter != 0){
+						$('#eventBoxContainer').append("<h3>" + value.artist + " " + value.date + "</h3>" + "<div>" + value.city + "<br>" + value.state + "<br>" + value.showTime + "<br>" + value.price + "<br>" + value.currency + "<br></div>");
+						selectCounter++;
+					} 
+				});
+				
+			});
+			
+			$.ajax({
+				url: 'https://blmak.github.io/BigMusicClubConclomerateDates.json',
+				dataType: 'json',
+				type: 'get',
+				cache: false,
+				success: function(data){
+					//console.log(data);
+						$(data).each(function(index, value){
+							//console.log(value.artist);
+							events.push(new Event(value.artist, value.venue, value.date, value.city, value.state, value.show_time, value.price, value.currency));
+						});
+				}
+			});
+			
+			/*
+			$('.eventBoxes').bind('mouseenter', function() {
+				console.log("mousein");
+				$(this).css('background-color', 'aqua');
+			});
+			$('.eventBoxes').bind('mouseleave', function() {
+				console.log("mouseout");
+				$(this).css('background-color', 'red');
+			});
+			*/
+			
+				
+			$('#eventBoxContainer').on('mouseenter', '.eventBoxes', function(){
+				//console.log("mousein");
+				$('.hideExtraDet').css('display', 'block');
+				
+			})
+			$('#eventBoxContainer').on('mouseleave', '.eventBoxes', function(){
+				//console.log("mouseout");
+				$('.hideExtraDet').css('display', 'none');
+			});
+			
+				
+         }); //end document ready
+			
+				
+		/*
+		$.getJSON("https://blmak.github.io/BigMusicClubConclomerateDates.json", function(data){
+			console.log(data);
+		});
+		*/
+	</script>
+	
+	<form action ="#">
+		<fieldset>
+			<select id="venueList">
+				<option disabled selected>Select Venue</option>
+				<option value="1">Little Café</option>
+				<option value="2">Big Hall</option>
+				<option value="3">Smokey Club</option>
+			</select>
+		</fieldset>
+	</form>
+	
+	<div id="eventBoxContainer">
+	
+	</div>
+</body>
+</html>
