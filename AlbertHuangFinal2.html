@@ -1,0 +1,1225 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Albert Final Project</title>
+	<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+	
+	<style>
+		
+		/*reset style*/
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure, 
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+		body {
+			line-height: 1;
+		}
+		ol, ul {
+			list-style: none;
+		}
+		blockquote, q {
+			quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+			content: '';
+			content: none;
+		}
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+		h1 { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } h3 { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5667px; }
+		/*end of reset style*/
+		
+		.tennisWrapper{		
+		}
+		
+		.slideOne{
+			background-color:#272727;
+			color:#a0a0a0;
+			font-size:10px;
+			text-transform: uppercase;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			padding-top:50px;
+			padding-bottom: 50px;
+			
+		}
+		
+		.slick-track {
+		  display: flex;
+		}
+		.slick-track .slick-slide {
+		  display: flex;
+		  height: auto;
+		  align-items: center;
+		  justify-content: center;
+		}
+		
+		body {
+			background-color:#272727;
+		}
+
+		label {
+			margin-left:50px;
+		}
+		
+		input, select {
+			margin-bottom:30px;
+			margin-left:50px;
+			margin-top:10px;
+			font-size:10px;
+			text-transform: uppercase;
+			padding 15px, 15px, 15px,15px;
+		}
+		
+		input[type=submit]{
+			background-color: #85ff5e;
+			width:125px;
+			height:30px;
+			padding 15px, 15px, 15px,15px;
+			border:none;
+			cursor: pointer;
+		}
+		
+		#firstlabel {
+			margin-top:50px;
+		}
+		
+		#p1AceButton, #p1FaultButton, #p1UnforcedErrorButton, #p1WinnerButton,
+		#p2AceButton, #p2FaultButton, #p2UnforcedErrorButton, #p2WinnerButton{
+			width:180px;
+			height:70px;
+			color: #85ff5e;
+			background-color: #474747;
+			margin-bottom: 30px;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight: 200;
+			text-align:center;
+			vertical-align: middle;
+			line-height: 70px;
+		}
+		
+		#p1AceButton, #p1FaultButton, #p1UnforcedErrorButton, #p1WinnerButton {
+			margin-right:80px;
+		}
+		
+		#p2AceButton, #p2FaultButton, #p2UnforcedErrorButton, #p2WinnerButton{
+			margin-left:80px;
+		}
+		
+		#p1AceButton:hover, #p1FaultButton:hover, #p1UnforcedErrorButton:hover, #p1WinnerButton:hover,
+		#p2AceButton:hover, #p2FaultButton:hover, #p2UnforcedErrorButton:hover, #p2WinnerButton:hover{
+			background-color:#85ff5e;
+		}
+		
+		#scoreWrapper{
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-size: 16px;
+			text-align:center;
+		}
+		
+		#currentScoreCounter{
+			font-size: 200px;
+			color: #ffffff;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight: 200;
+		}
+		
+		#currenStatusWrapper{
+			color:#676767;
+		}
+		
+		#statusMessage{
+			color: #ffffff;
+		}
+		
+		#p1NameSection, #p2NameSection{
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-size: 24px;
+			margin-top:20px;
+			color:#ffffff;
+			font-weight: 300;
+		}
+		
+		#p1NameSection {
+			margin-right: 50px;
+		}
+		
+		#setOneScore, #setTwoScore, #setThreeScore, #setFourScore, #setFiveScore{
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-size: 32px;
+			margin-top:20px;
+			color:#ffffff;
+			font-weight: 300;
+		}
+		
+		#p1SetOneGameScore, #p1SetTwoGameScore, #p1SetThreeGameScore, #p1SetFourGameScore, #p1SetFiveGameScore{
+			margin-right:50px;
+		}
+		
+		#p2SetOneGameScore, #p2SetTwoGameScore, #p2SetThreeGameScore, #p2SetFourGameScore, #p2SetFiveGameScore{
+			margin-left:50px;
+		}
+		
+		#weatherButton, #matchStatsButton {
+			width:150px;
+			height:50px;
+			color: #272727;
+			background-color: #85ff5e;
+			margin-top: 40px;
+			font-size: 12px;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight: 200;
+			text-align:center;
+			vertical-align: middle;
+			line-height: 50px;
+			display:inline-block;
+		}
+		
+		#weatherButton:hover, #matchStatsButton:hover{
+			background-color: #676767;
+		}
+		
+		#weatherButton {
+			margin-right:70px;
+		}
+		
+		#scoreWrapper{
+			margin-top:150px;
+		}
+		
+		#playerStatsText, #statsBoxPlayerName, #statsBoxWinners, #statsBoxUnfErrors, #statsBoxUnfErrors, #statsBox1stServePtWon, #statsBoxRecievePtWon{
+			text-transform: uppercase;
+			font-size: 24px;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight:200;
+			color: #85ff5e;
+		}
+		
+		#statsBoxAces, #statsBoxDFaults, #statsBox1stServeIn, #statsBox2ndServePtWon, #statsBoxTotalPtWon {
+			font-size: 24px;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight:200;
+			color: #ffffff;
+		}
+		
+		#statsBoxPlayerName, #statsBoxWinners, #statsBoxUnfErrors, #statsBoxUnfErrors, #statsBox1stServePtWon, #statsBoxRecievePtWon, #statsBoxTotalPtWon{
+			text-transform: none;
+		}
+		
+		#playerStatsText, #statsBoxPlayerName, #statsBoxWinners, #statsBoxUnfErrors, #statsBoxUnfErrors, #statsBox1stServePtWon, #statsBoxRecievePtWon, #statsBoxAces, #statsBoxDFaults, #statsBox1stServeIn, #statsBox2ndServePtWon {
+			margin-bottom:30px;
+		}
+		
+		#statsBoxP1Name, #statsBoxP1Aces, #statsBoxP1Winners, #statsBoxP1DFaults, #statsBoxP1UnfErrors, #statsBoxP11stServeIn, #statsBoxP11stServePtWon, #statsBoxP12ndServePtWon, #statsBoxP1RecievePtWon, #statsBoxP1TotalPtWon{
+			margin-right:200px;
+		} 
+		
+		#playerStatsText{
+			text-align: center;
+		}
+		
+		/*
+		#statsBoxP2Name, #statsBoxP2Aces, #statsBoxP2Winners, #statsBoxP2DFaults, #statsBoxP2UnfErrors, #statsBoxP21stServeIn, #statsBoxP21stServePtWon, #statsBoxP22ndServePtWon, #statsBoxP2RecievePtWon, #statsBoxP2TotalPtWon{
+			margin-left: 250px;
+		}*/
+		
+		#statsBoxP2Name{
+			margin-left:250px;
+		}
+		
+		#statsBoxP2Aces{
+			margin-left: 305px;
+		}
+		
+		#statsBoxP2Winners{
+			margin-left: 277px;
+		}
+		
+		#statsBoxP2DFaults{
+			margin-left: 226px;
+		}
+		
+		#statsBoxP2UnfErrors{
+			margin-left: 206px;
+		}
+		
+		#statsBoxP21stServeIn{
+			margin-left: 233px;
+		}
+		
+		#statsBoxP21stServePtWon{
+			margin-left: 187px;
+		}
+		
+		#statsBoxP22ndServePtWon{
+			margin-left: 179px;
+		}
+		
+		#statsBoxP2RecievePtWon{
+			margin-left: 150px;
+		}
+		
+		#statsBoxP2TotalPtWon{
+			margin-left: 200px;
+		}
+		
+		#matchPlayReturnButton, #matchPlayReturnButton2 {
+			width:150px;
+			height:50px;
+			color: #272727;
+			background-color: #85ff5e;
+			margin-top: 60px;
+			font-size: 12px;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight: 200;
+			text-align:center;
+			vertical-align: middle;
+			line-height: 50px;
+			margin-left: 240px;
+		}
+		
+		#matchPlayReturnButton:hover, #matchPlayReturnButton2:hover {
+			background-color: #ffffff;
+		}
+		
+		#playerServeToggle{
+			width:200px;
+			height:50px;
+			color: #272727;
+			background-color: #85ff5e;
+			margin-top: 60px;
+			font-size: 15px;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight: 400;
+			text-align:center;
+			vertical-align: middle;
+			line-height: 50px;
+			margin-left: 110px;
+		}
+		
+		#playerServeToggle:hover{
+			background-color: #ffffff;
+		}
+		
+		#WeatherInfoText, #humidity, #windDir {
+			text-transform: uppercase;
+			font-size: 24px;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight:200;
+			color: #85ff5e;
+			margin-bottom: 30px;
+		}
+		
+		#currentTemp, #windSpeed, #gustSpd {
+			text-transform: uppercase;
+			font-size: 24px;
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-weight:200;
+			color: #ffffff;
+			margin-bottom: 30px;
+		}
+		
+		#WeatherInfoText {
+			font-size: 48px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="tennisWrapper">
+		<div class="slideOne">
+			<div id="slideOneWrapper">
+			<fieldset>
+				<label id="firstlabel">Player 1 Name</label><br>
+				<input type="text" id="p1Name"><br>
+				<label>Player 2 Name</label><br>
+				<input type="text" id="p2Name"><br>
+				<label>Number of Sets</label>
+				<select id="numSets">
+					<option disabled selected>Select Number of Sets</option>
+					<option value="1">1</option>
+					<option value="3">3</option>
+					<option value="5">5</option>
+				</select><br>
+				<label>Zip Code</label>
+				<input type="text" id="zipCode"><br>
+				<input type="submit" value="Flip coin" onClick="return flipCoin()"><label class="coinResult"></label><br>
+				<input type="submit" value="Start the Match" onClick="return setInitialValues()">
+			</fieldset>
+			</div>
+		</div>
+		<div>
+			<div id="p1ButtonWrapper">
+				<div id = "p1AceButton">ACE</div>
+				<div id = "p1WinnerButton">WINNER</div>
+				<div id = "p1FaultButton">FAULT</div>
+				<div id = "p1UnforcedErrorButton">UNFORCED ERROR</div>
+			</div>
+			
+			<div id="scoreWrapper">
+				<div id="currenStatusWrapper"><span>CURRENT STATUS</span><br><span id="statusMessage"></span></div>
+				<div id="playerServeToggle"><span id="currentPlayerServerName">Player1</span><span> is serving</span></div>
+				<div id="currentScoreCounter"><span id="p1CurrentGameScore">0</span> - <span id="p2CurrentGameScore">0</span></div>
+				<div id="nameField"><span id="p1NameSection">Player One</span><span id="p2NameSection">Player Two</span></div>
+				<div id="setOneScore"><span id="p1SetOneGameScore">0</span><span id="setOneDash">-</span><span id="p2SetOneGameScore">0</span></div>
+				<div id="setTwoScore"><span id="p1SetTwoGameScore">0</span><span id="setTwoDash">-</span><span id="p2SetTwoGameScore">0</span></div>
+				<div id="setThreeScore"><span id="p1SetThreeGameScore">0</span><span id="setThreeDash">-</span><span id="p2SetThreeGameScore">0</span></div>
+				<div id="setFourScore"><span id="p1SetFourGameScore">0</span><span id="setFourDash">-</span><span id="p2SetFourGameScore">0</span></div>
+				<div id="setFiveScore"><span id="p1SetFiveGameScore">0</span><span id="setFiveDash">-</span><span id="p2SetFiveGameScore">0</span></div>
+				<div id="functionButtonWrapper"><div id="weatherButton">WEATHER</div><div id="matchStatsButton">MATCH STATISTICS</div></div>
+			</div>
+			
+			<div id="p2ButtonWrapper">
+				<div id = "p2AceButton">ACE</div>
+				<div id = "p2WinnerButton">WINNER</div>
+				<div id = "p2FaultButton">FAULT</div>
+				<div id = "p2UnforcedErrorButton">UNFORCED ERROR</div>
+			</div>
+		</div>
+		<div>
+			<div id="matchStatsWrapper">
+				<div id="playerStatsText">Player Statistics</div>
+				<div id="statsBoxPlayerName"><span id="statsBoxP1Name">Player 1</span><span id="statsBoxP2Name">Player 2</span></div>
+				<div id="statsBoxAces"><span id="statsBoxP1Aces">0</span><span id="statsBoxAcesMessage">Aces</span><span id="statsBoxP2Aces">0</span></div>
+				<div id="statsBoxWinners"><span id="statsBoxP1Winners">0</span><span id="statsBoxWinnersMessage">Winners</span><span id="statsBoxP2Winners">0</span></div>
+				<div id="statsBoxDFaults"><span id="statsBoxP1DFaults">0</span><span id="statsBoxDFaultsMessage">Double Faults</span><span id="statsBoxP2DFaults">0</span></div>
+				<div id="statsBoxUnfErrors"><span id="statsBoxP1UnfErrors">0</span><span id="statsBoxUnfErrorsMessage">Unforced Errors</span><span id="statsBoxP2UnfErrors">0</span></div>
+				<div id="statsBox1stServeIn"><span id="statsBoxP11stServeIn">0</span><span id="statsBox1stServeInMessage">First Serve In</span><span id="statsBoxP21stServeIn">0</span></div>
+				<div id="statsBox1stServePtWon"><span id="statsBoxP11stServePtWon">0</span><span id="statsBox1stServePtWonMessage">1st Serve Pt Won</span><span id="statsBoxP21stServePtWon">0</span></div>
+				<div id="statsBox2ndServePtWon"><span id="statsBoxP12ndServePtWon">0</span><span id="statsBox2ndServePtWonMessage">2nd Serve Pt Won</span><span id="statsBoxP22ndServePtWon">0</span></div>
+				<div id="statsBoxRecievePtWon"><span id="statsBoxP1RecievePtWon">0</span><span id="statsBoxRecievePtWonMessage">Receiving Points Won</span><span id="statsBoxP2RecievePtWon">0</span></div>
+				<div id="statsBoxTotalPtWon"><span id="statsBoxP1TotalPtWon">0</span><span id="statsBoxTotalPtWonMessage">Total Points Won</span><span id="statsBoxP2TotalPtWon">0</span></div>
+				<div id="matchPlayReturnButton">Return to Current Match</div>
+			</div>
+		</div>
+		
+		<div>
+			<div id="weatherInfoWrapper">
+				<div id="WeatherInfoText">Weather Information</div>
+				<div id="currentTemp">Current Temperature: <span id="currentTempValue">0</span></div>
+				<div id="humidity">Humidity: <span id="humidityValue">0</span></div>
+				<div id="windSpeed">Wind Speed: <span id="windSpeedValue">0</span></div>
+				<div id="windDir">Wind Direction: <span id="windDirValue">0</span></div>
+				<div id="gustSpd">Gust Speed: <span id="gustSpdValue">0</span></div>
+				<div id="matchPlayReturnButton2">Return to Current Match</div>
+			</div>
+		</div>
+  	</div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<script type="text/javascript" src="slick/slick.min.js"></script>
+
+  	<script type="text/javascript">
+		var coinWinner=0;
+		var p1Name = "player1";
+		var p2Name ="player2";
+		var p2Name ="player2";
+		var setNum;
+		var zipCode;
+		var p1GameScore = 0;
+		var p2GameScore = 0;
+		var p1PtWin = false;
+		var p2PtWin = false;
+		var p1Score = 0;
+		var p2Score = 0;
+		var set1 = true;
+		var set2 = false;
+		var set3 = false;
+		var set4 = false;
+		var set5 = false;
+		var deuce = false;
+		var p1deuceScore = 0;
+		var p2deuceScore = 0;
+		var p1TotalPoints = 0;
+		var p2TotalPoints = 0;
+		var setCounter = 0;
+		var p1GameCount = 0;
+		var p2GameCount = 0;
+		var p1SetScore = 0;
+		var p2SetScore = 0;
+		var tiebreak = false;
+		var p1TiebreakScore = 0;
+		var p2TiebreakScore = 0;
+		var p1fault = 0;
+		var p2fault = 0;
+		var p1AceCount = 0;
+		var p2AceCount = 0;
+		var p1WinnerCounter = 0;
+		var p2WinnerCounter = 0;
+		var p1DFaultCounter = 0;
+		var p2DFaultCounter = 0;
+		var p1UnfErrorCounter = 0;
+		var p2UnfErrorCounter = 0;
+		var p1FirstServeCounter = 0; //total num first servs
+		var p2FirstServeCounter = 0;
+		var p1TotalServes = 0;
+		var p2TotalServes = 0;
+		var p1SecondServeCounter = 0; //total num second serves
+		var p2SecondServeCounter = 0;
+		var p1Serving = true;
+		var p2Serving = false;
+		var p1FirstServePtsWon = 0;
+		var p2FirstServePtsWon = 0;
+		var p1SecondServePtsWon = 0;
+		var p2SecondServePtsWon = 0;
+		var currentTemp = 0;
+		var gustMph;
+		var humidity;
+		var windDir;
+		var windMPH;
+		
+		$(document).ready(function(){
+		//slick initialization and setup parameters
+		  $('.tennisWrapper').slick({
+			  draggable:false
+		  });
+			
+			$.ajax({
+				url: 'http://api.weatherapi.com/v1/current.json?key=0c8c2d19f2ab4497861204350212405&q=11373&aqi=no',
+				dataType:'json',
+				type: 'get',
+				cache:false,
+				success: function(data){
+					console.log(data);
+					currentTemp = data.current.temp_f;
+					gustMph = data.current.gust_mph;
+					humidity = data.current.humidity;
+					windDir = data.current.wind_dir;
+					windMPH = data.current.wind_mph;
+				}
+			});
+		});
+		
+		$('#p1AceButton').click(function(){
+			p1PtWin = true;
+			checkScore();
+			console.log("p1 ace")
+			p1fault = 0;
+			p2fault = 0;
+			p1AceCount++;
+			p1TotalServes++;
+			p1TotalPoints++;
+			checkP1Serve();
+			checkServeWin();
+		});
+		
+		$('#p1WinnerButton').click(function(){
+			p1PtWin = true;
+			checkScore();
+			p1fault = 0;
+			p2fault = 0;
+			p1WinnerCounter++;
+			p1TotalPoints++;
+			
+			if(p1Serving){
+				checkP1Serve();
+			} else if(p2Serving) {
+				checkP2Serve();
+			}
+			
+			checkServeWin();
+		});
+		
+		$('#p1FaultButton').click(function(){
+			if(p1fault == 1){
+				p2PtWin = true;
+				p2TotalPoints++;
+				checkScore();
+				p1fault = 0;
+				p1DFaultCounter++;
+			} else if(p1fault == 0){
+				p1fault = 1;
+			}
+		});
+		
+		$('#p1UnforcedErrorButton').click(function(){
+			p2PtWin = true;
+			p2TotalPoints++;
+			checkScore();
+			p1fault = 0;
+			p2fault = 0;
+			p1UnfErrorCounter++;
+			
+			if(p1Serving){
+				checkP1Serve();
+			} else if(p2Serving) {
+				checkP2Serve();
+			}
+			
+			checkServeWin()
+		});
+		
+		$('#p2AceButton').click(function(){
+			p2PtWin = true;
+			p2TotalPoints++;
+			checkScore();
+			console.log("p2 ace");
+			p1fault = 0;
+			p2fault = 0;
+			p2AceCount++;
+			p2TotalServes++;
+			checkP2Serve();
+			checkServeWin();
+		});
+		
+		$('#p2WinnerButton').click(function(){
+			p2PtWin = true;
+			p2TotalPoints++;
+			checkScore();
+			p1fault = 0;
+			p2fault = 0;
+			p2WinnerCounter++;
+			
+			if(p1Serving){
+				checkP1Serve();
+			} else if(p2Serving) {
+				checkP2Serve();
+			}
+			
+			checkServeWin();
+		});
+		
+		$('#p2FaultButton').click(function(){
+			if(p2fault == 1){
+				p1PtWin = true;
+				p1TotalPoints++;
+				checkScore();
+				p1fault = 0;
+				p2DFaultCounter++;
+			} else if(p2fault == 0){
+				p2fault = 1;
+			}
+		});
+		
+		$('#p2UnforcedErrorButton').click(function(){
+			p1PtWin = true;
+			p1TotalPoints++;
+			checkScore();
+			p1fault = 0;
+			p2fault = 0;
+			p2UnfErrorCounter++;
+			
+			if(p1Serving){
+				checkP1Serve();
+			} else if(p2Serving) {
+				checkP2Serve();
+			}
+			
+			checkServeWin();
+		});
+		
+		$('#matchStatsButton').click(function(){
+			$('.tennisWrapper').slick('slickGoTo', 2);
+			updateMatchStats();
+		});
+		
+		$('#matchPlayReturnButton').click(function(){
+			$('.tennisWrapper').slick('slickGoTo', 1);
+		});
+		
+		$('#matchPlayReturnButton2').click(function(){
+			$('.tennisWrapper').slick('slickGoTo', 1);
+		});
+		
+		$('#weatherButton').click(function(){
+			$('.tennisWrapper').slick('slickGoTo', 3);
+			$('#currentTempValue').html(currentTemp);
+			$('#humidityValue').html(humidity);
+			$('#windSpeedValue').html(windMPH);
+			$('#windDirValue').html(windDir);
+			$('#gustSpdValue').html(gustMph);
+		});
+		
+		$('#playerServeToggle').click(function(){
+			if(p1Serving){
+				p2Serving = true;
+				p1Serving = false;
+				$('#currentPlayerServerName').html(p2Name);
+			} else {
+				p1Serving = true;
+				p2Serving = false;
+				$('#currentPlayerServerName').html(p1Name);
+			}
+		});
+		
+		function checkP1Serve(){
+			if(p1Serve == 0){
+				p1FirstServeCounter++;
+			} else if(p1Serve == 1) {
+				p1SecondServeCounter++;
+			}
+		}
+		
+		function checkP2Serve(){
+			if(p2Serve == 0){
+				p2FirstServeCounter++;
+			} else if(p2Serve == 1) {
+				p2SecondServeCounter++;
+			}
+		}
+		
+		function checkServeWin(){
+			if(p1Serving){
+				if(p1Serve == 0){
+					p1FirstServePtsWon++;
+				} else if(p1Serve == 1) {
+					p1SecondServePtsWon++;		  
+				}
+			} else if(p2Serving){
+				if(p2Serve == 0){
+					p2FirstServePtsWon++;
+				} else if(p2Serve == 1) {
+					p2SecondServePtsWon++;		  
+				}
+			}
+		}
+		
+		function updateMatchStats(){
+			var firstServeIn = 0;
+			var firstServePtWon = 0;
+			var secondServePtWon = 0;
+			var remainingPoints = 0;
+			var recievePtsPct = 0;
+			$('#statsBoxP1Aces').html(p1AceCount);
+			$('#statsBoxP2Aces').html(p2AceCount);
+			$('#statsBoxP1Winners').html(p1WinnerCounter);
+			$('#statsBoxP2Winners').html(p2WinnerCounter);
+			$('#statsBoxP1DFaults').html(p1DFaultCounter);
+			$('#statsBoxP2DFaults').html(p2DFaultCounter);
+			$('#statsBoxP1UnfErrors').html(p1UnfErrorCounter);
+			$('#statsBoxP2UnfErrors').html(p1UnfErrorCounter);
+			if(p1TotalServes > 0) {
+				firstServeIn = (p1FirstServeCounter / p1TotalServes) * 100;
+				$('#statsBoxP11stServeIn').html(p1FirstServeCounter + "/" + p1TotalServes + "(" + firstServeIn + "%)");
+			}
+			if(p2TotalServes > 0) {
+				firstServeIn = (p2FirstServeCounter / p2TotalServes) * 100;
+				$('#statsBoxP21stServeIn').html(p2FirstServeCounter + "/" + p2TotalServes + "(" + firstServeIn + "%)");
+			}
+			if(p1FirstServeCounter > 0){
+				firstServePtWon = (p1FirstServePtsWon / p1FirstServeCounter) * 100;
+				$('#statsBoxP11stServePtWon').html(p1FirstServePtsWon + "/" + p1FirstServeCounter + "(" + firstServePtWon + "%)");
+			}
+			if(p2FirstServeCounter > 0){
+				firstServePtWon = (p2FirstServePtsWon / p2FirstServeCounter) * 100;
+				$('#statsBoxP21stServePtWon').html(p2FirstServePtsWon + "/" + p2FirstServeCounter + "(" + firstServePtWon + "%)");
+			}
+			if(p1SecondServeCounter > 0){
+				secondServePtWon = (p1SecondServePtsWon / p1SecondServeCounter) * 100;
+				$('#statsBoxP12ndServePtWon').html(p1SecondServePtsWon + "/" + p1SecondServeCounter + "(" + secondServePtWon + "%)");
+			}
+			if(p2SecondServeCounter > 0){
+				secondServePtWon = (p2SecondServePtsWon / p2SecondServeCounter) * 100;
+				$('#statsBoxP22ndServePtWon').html(p2SecondServePtsWon + "/" + p2SecondServeCounter + "(" + secondServePtWon + "%)");
+			}
+			if(p1TotalPoints > 0){
+				remainingPoints = p1TotalPoints - (p1FirstServePtsWon + p1SecondServePtsWon);
+				recievePtsPct = (remainingPoints / p1TotalPoints) * 100;
+				$('#statsBoxP1RecievePtWon').html(remainingPoints + "/" + p1TotalPoints + "(" + recievePtsPct + "%)");
+			}
+			if(p2TotalPoints > 0){
+				remainingPoints = p2TotalPoints - (p2FirstServePtsWon + p2SecondServePtsWon);
+				recievePtsPct = (remainingPoints / p2TotalPoints) * 100;
+				$('#statsBoxP1RecievePtWon').html(remainingPoints + "/" + p2TotalPoints + "(" + recievePtsPct + "%)");
+			}
+			$('#statsBoxP1TotalPtWon').html(p1TotalPoints);
+			$('#statsBoxP2TotalPtWon').html(p2TotalPoints);
+		}
+		
+		function checkScore(){
+			if(!tiebreak){ 
+				//p1 won point and p1 score less than 40
+				if(p1PtWin && p1GameScore < 3){
+					//p1 score should now be 40
+					p1GameScore++;
+					//p1 score is 3 so check p2 score for deuce
+					p1PtWin = false;
+					console.log(p1GameScore);
+				} 
+
+				if(p1PtWin && p1GameScore >= 3 && p2GameScore <= 2){
+					if(p2GameScore <= 2){
+						p2GameScore = 0;
+						p1GameScore = 0;
+						p1GameCount++;
+					}
+					p1PtWin = false;
+				}
+				///////////////////////////////////////////////////////////////////
+				if(p2PtWin && p2GameScore < 3){
+					p2GameScore++;
+					p2PtWin = false;
+				}
+
+				if(p2PtWin && p2GameScore >= 3 && p1GameScore <= 2){
+					if(p1GameScore <= 2){
+						p2GameScore = 0;
+						p1GameScore = 0;
+						p2GameCount++;
+					}
+					p2PtWin = false;
+				}
+				/////////////////////////////////////////////////////////////////////
+
+
+				if(p1PtWin && p1GameScore >= 3 && p1GameScore == p2GameScore){
+					console.log("deuce");
+					deuce = true;
+				}
+
+				if(p2PtWin && p2GameScore >= 3 && p1GameScore == p2GameScore){
+					console.log("deuce");
+					deuce = true;
+				}
+
+				//determines who wins duece
+				if(deuce){
+					if(p1PtWin && p1GameScore == p2GameScore){
+						p1GameScore = 4;
+						//p1 has adv
+						p1PtWin = false;
+					}
+
+					if(p2PtWin && p2GameScore == p1GameScore){
+						p2GameScore = 4;
+						//p2 has adv
+						p2PtWin = false
+						console.log("p2 advantge");
+					}
+
+					if(p1PtWin && p1GameScore == 4 && p2GameScore == 3){
+						//p1 wins duece
+						p1GameCount++;
+						p1GameScore = 0;
+						p2GameScore = 0;
+						p1PtWin = false;
+						p2PtWin = false;
+						deuce = false;
+					}	
+
+					if(p2PtWin && p2GameScore == 4 && p1GameScore == 3){
+						//p2 wins duece
+						p2GameCount++;
+						p1GameScore = 0;
+						p2GameScore = 0;
+						p1PtWin = false;
+						p2PtWin = false;
+						deuce = false;
+					}
+
+					if(p1PtWin && p2GameScore == 4 && p1GameScore == 3){
+						//p1 resets to deuce
+						p1GameScore = 3;
+						p2GameScore = 3;
+						p1PtWin = false;
+						p2PtWin = false;
+					}
+
+					if(p2PtWin && p1GameScore == 4 && p2GameScore == 3){
+						//p2 resets to deuce
+						p1GameScore = 3;
+						p2GameScore = 3;
+						p1PtWin = false;
+						p2PtWin = false;
+					}
+				}
+			} //end of deuce
+			
+			
+			if(set1){
+				if(p1GameCount >= 0){
+					$('#p1SetOneGameScore').html(p1GameCount);
+				}
+				if(p2GameCount >= 0){
+					$('#p2SetOneGameScore').html(p2GameCount);
+				}
+			} else if(set2) {
+				if(p1GameCount >= 0){
+					$('#p1SetTwoGameScore').html(p1GameCount);
+				}
+				if(p2GameCount >= 0){
+					$('#p2SetTwoGameScore').html(p2GameCount);
+				}
+			} else if(set3) {
+				if(p1GameCount >= 0){
+					$('#p1SetThreeGameScore').html(p1GameCount);
+				}
+				if(p2GameCount >= 0){
+					$('#p2SetThreeGameScore').html(p2GameCount);
+				}
+			} else if(set4) {
+				if(p1GameCount >= 0){
+					$('#p1SetFourGameScore').html(p1GameCount);
+				}
+				if(p2GameCount >= 0){
+					$('#p2SetFourGameScore').html(p2GameCount);
+				}
+			} else if(set5) {
+				if(p1GameCount >= 0){
+					$('#p1SetFiveGameScore').html(p1GameCount);
+				}
+				if(p2GameCount >= 0){
+					$('#p2SetFiveGameScore').html(p2GameCount);
+				}
+			}
+			
+			
+			///////////////////////////////////////////////////////////////////////////////////////////////////
+			//set
+			if((p1GameCount >= 6 && p2GameCount <= 4) || (p1GameCount == 7 && p2GameCount == 5)){
+				//p1 wins the sets without tiebreak
+				p1SetScore++;
+				if(set1){
+					set1 = false;
+					set2 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} else if(set2) {
+					set2 = false;
+					set3 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} else if(set3) {
+					set3 = false;
+					set4 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} else if(set3) {
+					set3 = false;
+					set4 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} else if(set5) {
+					set4 = false;
+					set5 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} 
+			}
+			
+			if(p2GameCount >= 6 && p1GameCount <= 4 || (p2GameCount == 7 && p1GameCount == 5)){
+				//p2 wins the sets without tiebreak
+				p2SetScore++;
+				if(set1){
+					set1 = false;
+					set2 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} else if(set2) {
+					set2 = false;
+					set3 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} else if(set3) {
+					set3 = false;
+					set4 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} else if(set4) {
+					set3 = false;
+					set4 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} else if(set5) {
+					set4 = false;
+					set5 = true;
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				} 
+			}
+				
+			//set tiebreaker
+			if(p1GameCount == 6 && p2GameCount == 6){
+				tiebreak = true;
+			}
+			
+			/////////////////////////////////////////////////////////////////////////////////////////////
+			if(tiebreak){
+				if(p1PtWin && p1TiebreakScore >= 7 && p2TiebreakScore <= 5){
+					//p1 wins set without needing to win by 2
+					p1SetScore++;
+					tiebreak = false;
+					if(set1){
+						set1 = false;
+						set2 = true;
+						$('#p1SetOneGameScore').html("7");
+					} else if(set2) {
+						set2 = false;
+						set3 = true;
+						$('#p1SetTwoGameScore').html("7");
+					} else if(set3) {
+						set3 = false;
+						set4 = true;
+						$('#p1SetThreeGameScore').html("7");
+					} else if(set3) {
+						set3 = false;
+						set4 = true;
+						$('#p1SetFourGameScore').html("7");
+					} else if(set5) {
+						set4 = false;
+						set5 = true;
+						$('#p1SetFiveGameScore').html("7");
+					}
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1TiebreakScore = 0;
+					p2TiebreakScore = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+					
+				}
+				
+				if(p2PtWin && p2TiebreakScore >= 7 && p1TiebreakScore <= 5){
+					//p2 wins set without needing to win by 2
+					p2SetScore++;
+					tiebreak = false;
+					if(set1){
+						set1 = false;
+						set2 = true;
+						$('#p2SetOneGameScore').html("7");
+					} else if(set2) {
+						set2 = false;
+						set3 = true;
+						$('#p2SetTwoGameScore').html("7");
+					} else if(set3) {
+						set3 = false;
+						set4 = true;
+						$('#p2SetThreeGameScore').html("7");
+					} else if(set3) {
+						set3 = false;
+						set4 = true;
+						$('#p2SetFourGameScore').html("7");
+					} else if(set5) {
+						set4 = false;
+						set5 = true;
+						$('#p2SetFiveGameScore').html("7");
+					}
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+					p1TiebreakScore = 0;
+					p2TiebreakScore = 0;
+					$('#p2CurrentGameScore').html("7")
+				}//end of p2 win without win by 2
+				
+				if(p1PtWin && p1TiebreakScore >= 6 && p2TiebreakScore >= 6 && (p1TiebreakScore == p2TiebreakScore + 1)){
+					//p1 wins set by winning 2 points in a row
+					p1SetScore++;
+					tiebreak = false;
+					if(set1){
+						set1 = false;
+						set2 = true;
+						$('#p1SetOneGameScore').html("7");
+					} else if(set2) {
+						set2 = false;
+						set3 = true;
+						$('#p1SetTwoGameScore').html("7");
+					} else if(set3) {
+						set3 = false;
+						set4 = true;
+						$('#p1SetThreeGameScore').html("7");
+					} else if(set3) {
+						set3 = false;
+						set4 = true;
+						$('#p1SetFourGameScore').html("7");
+					} else if(set5) {
+						set4 = false;
+						set5 = true;
+						$('#p1SetFiveGameScore').html("7");
+					} 
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+					p1TiebreakScore = 0;
+					p2TiebreakScore = 0;
+				}
+				
+				if(p2PtWin && p2TiebreakScore >= 6 && p1TiebreakScore >= 6 && (p2TiebreakScore == p1TiebreakScore + 1)){
+					//p2 wins set by winning 2 points in a row
+					p2SetScore++;
+					tiebreak = false;
+					if(set1){
+						set1 = false;
+						set2 = true;
+						$('#p1SetOneGameScore').html("7");
+					} else if(set2) {
+						set2 = false;
+						set3 = true;
+						$('#p1SetTwoGameScore').html("7");
+					} else if(set3) {
+						set3 = false;
+						set4 = true;
+						$('#p1SetThreeGameScore').html("7");
+					} else if(set3) {
+						set3 = false;
+						set4 = true;
+						$('#p1SetFourGameScore').html("7");
+					} else if(set5) {
+						set4 = false;
+						set5 = true;
+						$('#p1SetFiveGameScore').html("7");
+					} 
+					p1GameCount = 0;
+					p2GameCount = 0;
+					p1GameScore = 0;
+					p2GameScore = 0;
+				}
+			}//end of tiebreak if
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			////////////////////////////////////////////////////////////////////////////////////////////
+			//tiebreak scoring
+			if(tiebreak && p1PtWin){
+				p1PtWin = false
+				p1TiebreakScore++;
+			}//player 1 wins a point in tiebreak
+			
+			if(tiebreak && p2PtWin){
+				p2PtWin = false;
+				p2TiebreakScore++;
+			}
+			
+			if(!tiebreak){
+				if(p1GameScore == 1){
+					$('#p1CurrentGameScore').html("15");
+				} else if(p1GameScore == 2){
+					$('#p1CurrentGameScore').html("30");
+				} else if(p1GameScore == 3){
+					$('#p1CurrentGameScore').html("40");
+				} else if(p1GameScore == 0){
+					$('#p1CurrentGameScore').html("0");
+				} else if(p1GameScore == 4){
+					$('#p1CurrentGameScore').html("Adv");
+				}
+
+
+				if(p2GameScore == 1){
+					$('#p2CurrentGameScore').html("15");
+				} else if(p2GameScore == 2){
+					$('#p2CurrentGameScore').html("30");
+				} else if(p2GameScore == 3){
+					$('#p2CurrentGameScore').html("40");
+				} else if(p2GameScore == 0){
+					$('#p2CurrentGameScore').html("0");
+				} else if(p2GameScore == 4){
+					$('#p2CurrentGameScore').html("Adv");
+				}
+			} else if(tiebreak){
+				$('#p1CurrentGameScore').html(p1TiebreakScore);
+				$('#p2CurrentGameScore').html(p2TiebreakScore);
+			}
+		}//end of check score
+		
+		function flipCoin(){
+			var flipCoin = Math.floor(Math.random() * 2);
+			
+			if(flipCoin == 0){
+				$('.coinResult').html("Player 1 wins the coin toss");
+			} else {
+				$('.coinResult').html("Player 2 wins the coin toss");
+			}
+			coinWinner = flipCoin;
+		}
+		
+		function setInitialValues(){
+			var ajaxURL;
+			p1Name = $('#p1Name').val();
+			p2Name = $('#p2Name').val();
+			zipCode = $('#zipCode').val();
+			setNum = $('#numSets option:selected').text();
+			
+			console.log(p1Name + " " + p2Name + " " + zipCode + " " + setNum);
+			$('#statsBoxP1Name').html(p1Name);
+			$('#statsBoxP2Name').html(p2Name);
+			$('#p1NameSection').html(p1Name);
+			$('#p2NameSection').html(p2Name);
+			$('#currentPlayerServerName').html(p1Name);
+			
+			ajaxURL = 'http://api.weatherapi.com/v1/current.json?key=0c8c2d19f2ab4497861204350212405&q=' + zipCode + '&aqi=no';
+			
+			$.ajax({
+				url: ajaxURL,
+				dataType:'json',
+				type: 'get',
+				cache:false,
+				success: function(data){
+					console.log(data);
+					currentTemp = data.current.temp_f;
+					gustMph = data.current.gust_mph;
+					humidity = data.current.humidity;
+					windDir = data.current.wind_dir;
+					windMPH = data.current.wind_mph;
+				}
+			});
+			
+			if(setNum == 1){
+				$('#p1SetTwoGameScore').css("color","#575757");
+				$('#p2SetTwoGameScore').css("color","#575757");
+				$('#p1SetThreeGameScore').css("color","#575757");
+				$('#p2SetThreeGameScore').css("color","#575757");
+				$('#p1SetFourGameScore').css("color","#575757");
+				$('#p2SetFourGameScore').css("color","#575757");
+				$('#p1SetFiveGameScore').css("color","#575757");
+				$('#p2SetFiveGameScore').css("color","#575757");
+			} else if(setNum == 3){
+				$('#p1SetFourGameScore').css("color","#575757");
+				$('#p2SetFourGameScore').css("color","#575757");
+				$('#p1SetFiveGameScore').css("color","#575757");
+				$('#p2SetFiveGameScore').css("color","#575757");
+			}
+			$('.tennisWrapper').slick('slickGoTo', 1);
+			
+		}
+	</script>
+
+</body>
+</html>
