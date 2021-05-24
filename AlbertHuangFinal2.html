@@ -494,6 +494,8 @@
 		var humidity;
 		var windDir;
 		var windMPH;
+		var p1RecievingPts = 0;
+		var p2RecievingPts = 0;
 		
 		$(document).ready(function(){
 		//slick initialization and setup parameters
@@ -523,11 +525,22 @@
 			console.log("p1 ace")
 			p1fault = 0;
 			p2fault = 0;
+			
 			p1AceCount++;
 			p1TotalServes++;
 			p1TotalPoints++;
-			checkP1Serve();
-			checkServeWin();
+			
+			if(p1Serving){
+				//wins with ace on first serve
+				if(p1fault == 0){
+					p1FirstServePtsWon++;
+					p1FirstServeCounter++;
+				} else if(p1fault == 1) {
+					p1SecondServeCounter++;
+					p1SecondServePtsWon++;
+				}
+			}
+	
 		});
 		
 		$('#p1WinnerButton').click(function(){
@@ -539,12 +552,26 @@
 			p1TotalPoints++;
 			
 			if(p1Serving){
-				checkP1Serve();
-			} else if(p2Serving) {
-				checkP2Serve();
+				p1TotalServes++;
+				if(p1fault == 0){
+					p1FirstServePtsWon++;
+					p1FirstServeCounter++;
+				} else if(p1fault == 1) {
+					p1SecondServeCounter++;
+					p1SecondServePtsWon++;
+				}
+			} else if(p2Serving){	
+				p2TotalServes++;
+				p1RecievingPts++;
+				if(p2fault == 0){
+					p2FirstServeCounter++;
+					p1FirstServePtsWon++;
+				} else if(p2fault == 1){
+					p2SecondServeCounter++;
+					p1SecondServePtsWon++;
+				}
 			}
 			
-			checkServeWin();
 		});
 		
 		$('#p1FaultButton').click(function(){
@@ -554,8 +581,15 @@
 				checkScore();
 				p1fault = 0;
 				p1DFaultCounter++;
+				p1TotalServes++;
+				p2SecondServePtsWon++;
+				p1SecondServeCounter++;
+				p2RecievingPts++;
 			} else if(p1fault == 0){
 				p1fault = 1;
+				p1TotalServes++;
+				p2FirstServeCounter++;
+				p1FirstServeCounter++;
 			}
 		});
 		
@@ -568,12 +602,26 @@
 			p1UnfErrorCounter++;
 			
 			if(p1Serving){
-				checkP1Serve();
-			} else if(p2Serving) {
-				checkP2Serve();
+				p1TotalServes++;
+				if(p1fault == 0){
+					p2FirstServePtsWon++;
+					p1FirstServeCounter++;
+					p2RecievingPts++;
+				} else if(p1fault == 1) {
+					p2SecondServePtsWon++;
+					p1SecondServeCounter++;
+					p2RecievingPts++;
+				}
+			} else if(p2Serving){
+				if(p2fault == 0){
+					p2FirstServeCounter++;
+					p2FirstServePtsWon++;
+				} else if(p2fault == 1){
+					p2SecondServeCounter++;
+					p2SecondServePtsWon++;
+				}
+				p2TotalServes++;
 			}
-			
-			checkServeWin()
 		});
 		
 		$('#p2AceButton').click(function(){
@@ -585,8 +633,17 @@
 			p2fault = 0;
 			p2AceCount++;
 			p2TotalServes++;
-			checkP2Serve();
-			checkServeWin();
+			
+			if(p2Serving){
+				//wins with ace on first serve
+				if(p2fault == 0){
+					p2FirstServePtsWon++;
+					p2FirstServeCounter++;
+				} else if(p2fault == 1) {
+					p2SecondServeCounter++;
+					p2SecondServePtsWon++;
+				}
+			}
 		});
 		
 		$('#p2WinnerButton').click(function(){
@@ -597,13 +654,26 @@
 			p2fault = 0;
 			p2WinnerCounter++;
 			
-			if(p1Serving){
-				checkP1Serve();
-			} else if(p2Serving) {
-				checkP2Serve();
+			if(p2Serving){
+				p2TotalServes++;
+				if(p2fault == 0){
+					p2FirstServePtsWon++;
+					p2FirstServeCounter++;
+				} else if(p2fault == 1) {
+					p2SecondServeCounter++;
+					p2SecondServePtsWon++;
+				}
+			} else if(p1Serving){	
+				p1TotalServes++;
+				p2RecievingPts++;
+				if(p1fault == 0){
+					p1FirstServeCounter++;
+					p2FirstServePtsWon++;
+				} else if(p2fault == 1){
+					p1SecondServeCounter++;
+					p2SecondServePtsWon++;
+				}
 			}
-			
-			checkServeWin();
 		});
 		
 		$('#p2FaultButton').click(function(){
@@ -613,8 +683,14 @@
 				checkScore();
 				p1fault = 0;
 				p2DFaultCounter++;
+				p1SecondServePtsWon++;
+				p2SecondServeCounter++;
+				p1RecievingPts++;
+				p2TotalServes++;
 			} else if(p2fault == 0){
 				p2fault = 1;
+				p2FirstServeCounter++;
+				p2TotalServes++;
 			}
 		});
 		
@@ -626,13 +702,27 @@
 			p2fault = 0;
 			p2UnfErrorCounter++;
 			
-			if(p1Serving){
-				checkP1Serve();
-			} else if(p2Serving) {
-				checkP2Serve();
+			if(p2Serving){
+				p2TotalServes++;
+				if(p2fault == 0){
+					p1FirstServePtsWon++;
+					p2FirstServeCounter++;
+					p1RecievingPts++;
+				} else if(p2fault == 1) {
+					p1SecondServePtsWon++;
+					p2SecondServeCounter++;
+					p1RecievingPts++;
+				}
+			} else if(p1Serving){
+				if(p1fault == 0){
+					p1FirstServeCounter++;
+					p1FirstServePtsWon++;
+				} else if(p1fault == 1){
+					p1SecondServeCounter++;
+					p1SecondServePtsWon++;
+				}
+				p1TotalServes++;
 			}
-			
-			checkServeWin();
 		});
 		
 		$('#matchStatsButton').click(function(){
@@ -669,38 +759,6 @@
 			}
 		});
 		
-		function checkP1Serve(){
-			if(p1Serve == 0){
-				p1FirstServeCounter++;
-			} else if(p1Serve == 1) {
-				p1SecondServeCounter++;
-			}
-		}
-		
-		function checkP2Serve(){
-			if(p2Serve == 0){
-				p2FirstServeCounter++;
-			} else if(p2Serve == 1) {
-				p2SecondServeCounter++;
-			}
-		}
-		
-		function checkServeWin(){
-			if(p1Serving){
-				if(p1Serve == 0){
-					p1FirstServePtsWon++;
-				} else if(p1Serve == 1) {
-					p1SecondServePtsWon++;		  
-				}
-			} else if(p2Serving){
-				if(p2Serve == 0){
-					p2FirstServePtsWon++;
-				} else if(p2Serve == 1) {
-					p2SecondServePtsWon++;		  
-				}
-			}
-		}
-		
 		function updateMatchStats(){
 			var firstServeIn = 0;
 			var firstServePtWon = 0;
@@ -717,37 +775,35 @@
 			$('#statsBoxP2UnfErrors').html(p1UnfErrorCounter);
 			if(p1TotalServes > 0) {
 				firstServeIn = (p1FirstServeCounter / p1TotalServes) * 100;
-				$('#statsBoxP11stServeIn').html(p1FirstServeCounter + "/" + p1TotalServes + "(" + firstServeIn + "%)");
+				$('#statsBoxP11stServeIn').html(p1FirstServeCounter + "/" + p1TotalServes + "(" + Math.round(firstServeIn * 10) / 10 + "%)");
 			}
 			if(p2TotalServes > 0) {
 				firstServeIn = (p2FirstServeCounter / p2TotalServes) * 100;
-				$('#statsBoxP21stServeIn').html(p2FirstServeCounter + "/" + p2TotalServes + "(" + firstServeIn + "%)");
+				$('#statsBoxP21stServeIn').html(p2FirstServeCounter + "/" + p2TotalServes + "(" + Math.round(firstServeIn * 10) / 10 + "%)");
 			}
 			if(p1FirstServeCounter > 0){
-				firstServePtWon = (p1FirstServePtsWon / p1FirstServeCounter) * 100;
-				$('#statsBoxP11stServePtWon').html(p1FirstServePtsWon + "/" + p1FirstServeCounter + "(" + firstServePtWon + "%)");
+				firstServePtWon = (p1FirstServePtsWon / p1TotalPoints) * 100;
+				$('#statsBoxP11stServePtWon').html(p1FirstServePtsWon + "/" + p1FirstServeCounter + "(" + Math.round(firstServePtWon * 10) / 10 + "%)");
 			}
 			if(p2FirstServeCounter > 0){
-				firstServePtWon = (p2FirstServePtsWon / p2FirstServeCounter) * 100;
-				$('#statsBoxP21stServePtWon').html(p2FirstServePtsWon + "/" + p2FirstServeCounter + "(" + firstServePtWon + "%)");
+				firstServePtWon = (p2FirstServePtsWon / p2TotalPoints) * 100;
+				$('#statsBoxP21stServePtWon').html(p2FirstServePtsWon + "/" + p2FirstServeCounter + "(" + Math.round(firstServePtWon * 10) / 10 + "%)");
 			}
 			if(p1SecondServeCounter > 0){
-				secondServePtWon = (p1SecondServePtsWon / p1SecondServeCounter) * 100;
-				$('#statsBoxP12ndServePtWon').html(p1SecondServePtsWon + "/" + p1SecondServeCounter + "(" + secondServePtWon + "%)");
+				secondServePtWon = (p1SecondServePtsWon / p1TotalPoints) * 100;
+				$('#statsBoxP12ndServePtWon').html(p1SecondServePtsWon + "/" + p1SecondServeCounter + "(" + Math.round(secondServePtWon * 10) / 10 + "%)");
 			}
 			if(p2SecondServeCounter > 0){
-				secondServePtWon = (p2SecondServePtsWon / p2SecondServeCounter) * 100;
-				$('#statsBoxP22ndServePtWon').html(p2SecondServePtsWon + "/" + p2SecondServeCounter + "(" + secondServePtWon + "%)");
+				secondServePtWon = (p2SecondServePtsWon / p2TotalPoints) * 100;
+				$('#statsBoxP22ndServePtWon').html(p2SecondServePtsWon + "/" + p2SecondServeCounter + "(" + Math.round(secondServePtWon * 10) / 10 + "%)");
 			}
 			if(p1TotalPoints > 0){
-				remainingPoints = p1TotalPoints - (p1FirstServePtsWon + p1SecondServePtsWon);
-				recievePtsPct = (remainingPoints / p1TotalPoints) * 100;
-				$('#statsBoxP1RecievePtWon').html(remainingPoints + "/" + p1TotalPoints + "(" + recievePtsPct + "%)");
+				recievePtsPct = (p1RecievingPts / p1TotalPoints) * 100;
+				$('#statsBoxP1RecievePtWon').html(p1RecievingPts + "/" + p1TotalPoints + "(" + Math.round(recievePtsPct * 10) / 10 + "%)");
 			}
 			if(p2TotalPoints > 0){
-				remainingPoints = p2TotalPoints - (p2FirstServePtsWon + p2SecondServePtsWon);
-				recievePtsPct = (remainingPoints / p2TotalPoints) * 100;
-				$('#statsBoxP1RecievePtWon').html(remainingPoints + "/" + p2TotalPoints + "(" + recievePtsPct + "%)");
+				recievePtsPct = (p2RecievingPts / p2TotalPoints) * 100;
+				$('#statsBoxP1RecievePtWon').html(p2RecievingPts + "/" + p2TotalPoints + "(" + Math.round(recievePtsPct * 10) / 10 + "%)");
 			}
 			$('#statsBoxP1TotalPtWon').html(p1TotalPoints);
 			$('#statsBoxP2TotalPtWon').html(p2TotalPoints);
