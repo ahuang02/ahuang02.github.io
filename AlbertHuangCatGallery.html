@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Albert Huang Mars Weather site</title>
+	
+	<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+	
+	<style>
+		
+		body {
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+			background-color:#CBCBCB;
+		}
+		
+		.slick-track {
+		  display: flex;
+		}
+		.slick-track .slick-slide {
+		  display: flex;
+		  height: auto;
+		  align-items: center;
+		  justify-content: center;
+		}
+		
+		img{
+			max-height:600px;
+			max-width: auto;
+		}
+		
+		h1{
+			display: flex;
+		  	height: auto;
+		  	align-items: center;
+		  	justify-content: center;
+			padding-top: 50px;
+			font-size: 24px;
+		}
+		.catFact {
+			display: flex;
+		  	height: auto;
+		  	align-items: center;
+		  	justify-content: center;
+			padding-top: 10px;
+			padding-right: 50px;
+			padding-left: 50px;
+			font-size: 24px;
+		}
+		
+		.catSlider {
+			padding-top: 100px;
+		}
+		
+	</style>
+</head>
+
+<body>	
+	<div class="catWrapper">
+		<div class="catSlider">
+		</div>
+	</div>
+
+	<h1>Random cat fact</h1>
+	<div class="catFact"></div>
+	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<script type="text/javascript" src="slick/slick.min.js"></script>
+	
+	<script type="text/javascript">
+		var catImageURL = new Array();
+		var catTest;
+		var catFact;
+		
+		
+		$(document).ready(function(){
+			
+			$('.catSlider').slick({
+				autoplay: true,
+    			autoplaySpeed: 2000,
+				centerMode: true,
+				arrows: true
+			});
+			
+			for(let i = 0; i < 8; i++){
+				$.ajax({
+					url: 'https://api.thecatapi.com/v1/images/search',
+					dataType: 'json',
+					type: 'get',
+					cache: false,
+					success: function(data){
+						console.log(data);
+						//catTest = data[0].url;
+						catImageURL.push(data[0].url);
+						console.log("cat url " + i + " " + catImageURL[i]);
+						if(catImageURL[i] != undefined){
+							//$('.catgallery').append('<img src = "' + catImageURL[i] + '">');
+							//$('#catSlider').append('<img src = "' + catImageURL[i] + '"/>');
+							$('.catSlider').slick('slickAdd','<div><img class="catImg" src = "' + catImageURL[i] + '"/></div>');
+						}
+						
+					}
+					
+				});
+			}	
+			
+			$.ajax({
+				url: 'https://catfact.ninja/fact?max_length=250',
+				dataType: 'json',
+				type: 'get',
+				cache:false,
+				success: function(data){
+					console.log(data);
+					catFact = data.fact;
+					console.log("catFact " + catFact);
+					$('.catFact').append(catFact);
+				}
+			});
+			
+		}); //end of document ready
+		
+		
+		
+	</script>
+	
+	
+</body>
+</html>
